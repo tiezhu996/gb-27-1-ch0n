@@ -1,4 +1,4 @@
-import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn, ManyToOne, JoinColumn } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn, ManyToOne, JoinColumn, Unique } from 'typeorm';
 import { Assignment } from './assignment.entity';
 import { User } from './user.entity';
 
@@ -8,6 +8,8 @@ export enum SubmissionStatus {
 }
 
 @Entity('assignment_submissions')
+// 同一学生对同一作业只允许保留一份提交记录，重复提交只更新该行
+@Unique('uq_submission_assignment_student', ['assignmentId', 'studentId'])
 export class AssignmentSubmission {
   @PrimaryGeneratedColumn('uuid')
   id: string;
