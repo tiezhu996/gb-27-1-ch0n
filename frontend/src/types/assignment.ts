@@ -9,6 +9,19 @@ export enum SubmissionStatus {
   GRADED = 'graded',
 }
 
+export interface ChoiceQuestionOption {
+  label?: string;
+  value?: string | number;
+}
+
+export interface ChoiceQuestion {
+  id: string | number;
+  title?: string;
+  question?: string;
+  multiple?: boolean;
+  options?: ChoiceQuestionOption[] | string[];
+}
+
 export interface Assignment {
   id: string;
   title: string;
@@ -17,7 +30,7 @@ export interface Assignment {
   lessonId: string;
   teacherId: string;
   type: AssignmentType;
-  questions?: any;
+  questions?: ChoiceQuestion[] | any;
   deadline?: Date;
   maxScore: number;
   createdAt: Date;
@@ -29,12 +42,18 @@ export interface AssignmentSubmission {
   assignmentId: string;
   studentId: string;
   textAnswer?: string;
-  choiceAnswers?: any;
+  choiceAnswers?: Record<string, string | number | Array<string | number>>;
   attachmentUrls?: string[];
   status: SubmissionStatus;
   score?: number;
   feedback?: string;
+  lastRejectReason?: string;
   gradedAt?: Date;
   createdAt: Date;
   updatedAt: Date;
+  student?: {
+    id: string;
+    name: string;
+    email?: string;
+  };
 }

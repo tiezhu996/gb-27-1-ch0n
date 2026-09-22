@@ -101,6 +101,7 @@ CREATE TABLE IF NOT EXISTS assignment_submissions (
   status VARCHAR(20) NOT NULL DEFAULT 'submitted',
   score INT,
   feedback TEXT,
+  last_reject_reason TEXT,
   graded_at TIMESTAMP,
   created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
   updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,

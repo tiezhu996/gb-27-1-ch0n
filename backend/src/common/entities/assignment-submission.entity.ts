@@ -36,6 +36,9 @@ export class AssignmentSubmission {
   @Column({ type: 'text', nullable: true })
   feedback: string;
 
+  @Column({ type: 'text', nullable: true })
+  lastRejectReason: string;
+
   @Column({ type: 'timestamp', nullable: true })
   gradedAt: Date;
 
